@@ -1,17 +1,23 @@
-package dsa.assignment;
+package dsa.assignment.java;
+import java.util.*;
 
 public class DuplicateElement {
-	public static void main(String[] args) {
-		boolean flag = true;
-		int[] nums = {1,2,3,1};
-		BubbleSort.sort(nums);
-		for(int i=0; i<nums.length-1; i++) {
-			if((nums[i]^nums[i+1])==0)
-			flag = false;
-			break;
+	public static boolean isContainDuplicates(int[] arr) {
+		Arrays.sort(arr);
+		
+		for(int i = 0; i < arr.length - 1; i++) {
+			if(arr[i] == arr[i + 1]) {
+				return true;
+			}
 		}
-		if(flag) System.out.println("No duplicates");
-		else  System.out.println("Contains Duplicate");
+		
+		return false;
 	}
+	public static void main(String[] args) {
+		int[] arr = { 1, 5, 7, 1, 5, 9, 15, 6, 15 };
+		System.out.println("Does array contains duplicate elements? " + isContainDuplicates(arr));
+
+	}
+
 
 }

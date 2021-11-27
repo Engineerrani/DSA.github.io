@@ -1,40 +1,34 @@
-package dsa.assignment;
+package dsa.assignment.java;
 
 public class BinarySearch {
-	public static int binary_search(int search, int []a) {
-		int start = 0;
-		int end = a.length-1;
+	public static int binarySearch(int[] arr, int target) {
+		int result = -1;
 		
-		int mid = (start + end)/2;
-		while(start<=end) {
-			
-			if(a[mid]==search) {
-				return mid;
-			}
-			else if(a[mid]<search) {
-				start = mid+1;
-			}
-			else {
-				end = mid-1;
-			}
-			 mid = (start + end)/2;
-			
-			if(start>end) {
-				return -1;
-			}
+		int low = 0;
+		int high = arr.length - 1;
 		
+		while(low <= high) {
+			int mid = low + (high - low) / 2;
+			
+			if(target < arr[mid]) {
+				high = mid - 1;
+			} else if (target > arr[mid]) {
+				low = mid + 1;
+			} else {
+				result = mid;
+				return result;
+			}
 		}
 		
-		return 0;
+		return result;
 	}
-	
 	public static void main(String[] args) {
+		int[] arr = {1, 2, 4, 6, 8, 28, 44, 51, 59, 66, 69, 71};
+		int target = 3;
 		
-		int []a = {2,4,6,8,9,11};
-		int search = 12;
-		System.out.println(binary_search(search,a));
+		int found_pos = binarySearch(arr, target);
+		System.out.println(target + " found at position " + found_pos);
 	}
-
 
 
 }

@@ -1,15 +1,42 @@
-package dsa.assignment;
+package dsa.assignment.java;
 
 public class MajorityElement {
-public static void main(String[] args) {
+	public static int findMajorityElement(int[] arr) {
+		int result = -1;
+		int counter = 0;
 		
-		//if the majority element is more than array.length/2;
-		int[] arr = {1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,2,3,8,9,5,2,3,8,6,9,1,2};
-		BubbleSort.sort(arr);
-		System.out.println(arr[arr.length/2]);
-		for(int num : arr){
-			System.out.println(num);
+		for(int i = 0; i < arr.length; i++) {
+			if(counter == 0) {
+				result = arr[i];
+				counter++;
+			} else if (result == arr[i]) {
+				counter++;
+			} else {
+				counter--;
+			}
 		}
+		
+		int verify_counter = 0;
+		for(int i = 0; i < arr.length; i++) {
+			if(result == arr[i]) {
+				verify_counter++;
+			}
+		}
+		
+		if(verify_counter >= (arr.length / 2))
+			return result;
+		else
+			return Integer.MIN_VALUE;
 	}
+
+	public static void main(String[] args) {
+		int[] arr = { 1, 8, 7, 4, 18, 21, 2, 2, 12, 11, 10 };
+		
+//		int[] arr = { 1, 8, 7, 4, 1, 2, 2, 2, 2, 2, 2 };
+		 
+        System.out.println("The majority element is " + findMajorityElement(arr));
+
+	}
+
 
 }
